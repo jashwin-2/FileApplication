@@ -63,6 +63,7 @@ class InternalFragment : Fragment(),OnFileSelectedListner {
 
     @RequiresApi(Build.VERSION_CODES.R)
     fun requestPermission() {
+        //TODO better permission handling
         if (ContextCompat.checkSelfPermission(
                 requireContext(),
                 android.Manifest.permission.READ_EXTERNAL_STORAGE
@@ -88,6 +89,7 @@ class InternalFragment : Fragment(),OnFileSelectedListner {
       }.toList().toMutableList()
 
         val files = file.listFiles().filter {
+            //TODO repeated processing. name.lowercase is called multiple times but the output will be the same. such repeated processing needs to be avoided. applies to Locale.getDefault() too
             it.name.lowercase(Locale.getDefault()).endsWith(".jpeg") ||
                     it.name.lowercase(Locale.getDefault()).endsWith(".png") ||
                     it.name.lowercase(Locale.getDefault()).endsWith(".wav") ||
@@ -108,8 +110,10 @@ class InternalFragment : Fragment(),OnFileSelectedListner {
     private fun displayFiles() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(context)
+        //TODO
         var fileList = mutableListOf<File>()
         fileList.addAll(findFiles(internalStorage))
+        //TODO why create a new list and copy items ?
         fileAdapter = FileAdapter(context, fileList, this)
         recyclerView.adapter = fileAdapter
     }
@@ -120,12 +124,14 @@ class InternalFragment : Fragment(),OnFileSelectedListner {
             bundle.putString("path", file.absolutePath)
             var frag = InternalFragment()
             frag.arguments = bundle
+            //TODO commit vs commitAllowingStateloss, addToBackStack
             fragmentManager?.beginTransaction()!!.replace(R.id.fragment_container, frag)
                 .addToBackStack(null)
                 .commit()
         }
         else
         {
+            //TODO file mime type, FileUriExposedException
             val target=Intent(Intent.ACTION_VIEW).also{
                 it.setDataAndType(Uri.fromFile(file),"application/pdf")
                 it.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
@@ -139,6 +145,7 @@ class InternalFragment : Fragment(),OnFileSelectedListner {
 
     private fun isEmpty(internalStorage: File): Boolean {
         var items = 0
+        //TODO Only need to find at least one file which is not hidden. No need to count all files
         internalStorage.listFiles().forEach { if(!it.isHidden) items++ }
         return items==0
     }

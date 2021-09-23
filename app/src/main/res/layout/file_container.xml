@@ -73,6 +73,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
 </androidx.cardview.widget.CardView>
+
+<!-- Instead of multiple nested LinearLayouts use RelativeLayout or ConstraintLayout. View hiererchy should be as flat as possible. Too much nested views will affect app performance -->

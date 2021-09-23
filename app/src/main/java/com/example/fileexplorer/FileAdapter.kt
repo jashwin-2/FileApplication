@@ -21,11 +21,13 @@ class FileAdapter(private val context: Context?, private val files: List<File>, 
         holder.textName.isSelected=true
         var items =0
         if(files[position].isDirectory){
+            //TODO Only need to find at least one file which is not hidden. No need to count all files.
+                // Also this is a repetition of code which is already present in InternalFragment.isEmpty()
             files[position].listFiles().forEach { if (!it.isHidden) {
                 items++
             }
             }
-            holder.textSize.text = items.toString() + "Files"
+            holder.textSize.text = items.toString() + " Files"
             holder.imgType.setImageResource(R.drawable.ic_folder)
         }
         else{
@@ -35,8 +37,8 @@ class FileAdapter(private val context: Context?, private val files: List<File>, 
         holder.cardView.setOnClickListener{
             listner.onFileClicked(files[position])
         }
-        val date = SimpleDateFormat("MM-dd-yyyy  HH-mm-ss")
-        holder.lastModified.text="last modified : "+date.format(files[position].lastModified())
+        val date = SimpleDateFormat("MM-dd-yyyy  HH:mm:ss")
+        holder.lastModified.text="Last modified : "+date.format(files[position].lastModified())
 
     }
 
