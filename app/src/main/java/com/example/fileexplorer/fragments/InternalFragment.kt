@@ -3,6 +3,7 @@ package com.example.fileexplorer.fragments
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -122,6 +123,16 @@ class InternalFragment : Fragment(),OnFileSelectedListner {
             fragmentManager?.beginTransaction()!!.replace(R.id.fragment_container, frag)
                 .addToBackStack(null)
                 .commit()
+        }
+        else
+        {
+            val target=Intent(Intent.ACTION_VIEW).also{
+                it.setDataAndType(Uri.fromFile(file),"application/pdf")
+                it.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+
+            }
+            var int = Intent.createChooser(target,"Open File")
+            context?.startActivity(int)
         }
 
     }
