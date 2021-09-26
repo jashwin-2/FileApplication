@@ -27,7 +27,8 @@ class FileAdapter(private val context: Context?, private val files: List<File>, 
                 items++
             }
             }
-            holder.textSize.text = items.toString() + " Files"
+
+            holder.textSize.text  =items.toString() + if(items==1) " Item"  else " Items"
             holder.imgType.setImageResource(R.drawable.ic_folder)
         }
         else{
@@ -37,8 +38,9 @@ class FileAdapter(private val context: Context?, private val files: List<File>, 
         holder.cardView.setOnClickListener{
             listner.onFileClicked(files[position])
         }
-        val date = SimpleDateFormat("MM-dd-yyyy  HH:mm:ss")
+       val date = SimpleDateFormat("MM-dd-yyyy  KK:mm a")
         holder.lastModified.text="Last modified : "+date.format(files[position].lastModified())
+        holder.textName.isSelected=true
 
     }
 

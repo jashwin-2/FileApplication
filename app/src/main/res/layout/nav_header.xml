@@ -3,18 +3,22 @@
 	android:layout_width="match_parent"
 	android:layout_height="176dp"
 	android:orientation="vertical"
-	android:background="@color/green"
+	android:background="@color/blue"
 	android:gravity="bottom">
 
 	<ImageView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:src="@mipmap/ic_filemanager"></ImageView>
+		android:layout_width="75dp"
+		android:layout_height="75dp"
+		android:layout_gravity="center"
+		android:layout_marginBottom="7dp"
+		android:src="@drawable/ic_file_explorer" />
 
 	<TextView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:padding="8dp"
 		android:text="File Explorer"
-		android:textSize="26sp"
-		android:paddingTop="8dp"></TextView>
+		android:textColor="@color/white"
+		android:textSize="20sp" />
 </LinearLayout>

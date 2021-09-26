@@ -5,74 +5,90 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="0.25dp"
     app:cardBackgroundColor="@color/white">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="1dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="2dp"
         android:layout_marginBottom="1dp"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
+
         <ImageView
             android:id="@+id/fileType"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_width="45dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/ic_folder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
+        <TextView
+            android:id="@+id/fileName"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:ellipsize="marquee"
             android:gravity="center_vertical"
-            android:orientation="vertical">
+            android:padding="2dp"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:text="FILE NAME.png"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/last_modified"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fileType">
 
-            <TextView
-                android:id="@+id/fileName"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:ellipsize="marquee"
-                android:gravity="center_vertical"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:text="FILE NAME.png"
-                android:textColor="@color/black"
-                android:textSize="18sp">
+        </TextView>
 
-            </TextView>
+        <TextView
+            android:id="@+id/size"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="Size"
+            android:textColor="@color/gray"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/last_modified"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/fileName"
+            app:layout_constraintStart_toStartOf="@+id/fileName"
+            app:layout_constraintTop_toBottomOf="@+id/fileName"
+            app:layout_constraintVertical_bias="0.0">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginLeft="10dp">
+        </TextView>
 
-                <TextView
-                    android:id="@+id/size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Size"
-                    android:textColor="@android:color/black">
+        <TextView
+            android:id="@+id/last_modified"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:padding="2dp"
+            android:text="date"
+            android:textColor="@color/gray"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="3"
+            app:layout_constraintStart_toEndOf="@+id/size"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.769">
 
-                </TextView>
+        </TextView>
 
-                <TextView
-                    android:id="@+id/last_modified"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_gravity="right"
-                    android:text="date"
-                    android:textColor="@color/black">
-
-                </TextView>
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
 
 <!-- Instead of multiple nested LinearLayouts use RelativeLayout or ConstraintLayout. View hiererchy should be as flat as possible. Too much nested views will affect app performance -->

@@ -4,61 +4,55 @@
     android:id="@+id/internal_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="6dp"
-    android:background="@android:color/white"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".fragments.InternalFragment">
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/tv_pathHolder"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@android:color/darker_gray">
+        android:layout_height="40dp"
+        android:ellipsize="marquee"
+        android:gravity="center_vertical"
+        android:padding="5dp"
+        android:scrollHorizontally="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:text="path/"
+        android:textColor="@color/dark_gray"
+        android:textSize="15sp"
+        android:singleLine="true" />
 
-        <ImageView
-            android:id="@+id/img_back"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:padding="14dp"
-            android:src="@drawable/ic_back" />
-
-        <TextView
-            android:id="@+id/tv_pathHolder"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:ellipsize="marquee"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="path/"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-
-
-    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_margin="6dp"
         android:id="@+id/recycler_internal"
+        android:background="@color/gray"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="gone">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_empty_folder"
+            android:layout_gravity="center"
             android:layout_marginTop="200dp"
-            android:layout_gravity="center">
-        </ImageView>
+            android:src="@drawable/ic_empty_folder" />
 
         <TextView
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="No Files"
+            android:layout_marginTop="5dp"
             android:textSize="20sp">
 
         </TextView>
